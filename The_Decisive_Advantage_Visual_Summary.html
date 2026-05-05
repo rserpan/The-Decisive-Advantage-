@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Decisive Advantage - Visual Summary</title>
+<style>
+  :root {
+    --white: #FFFFFF;
+    --off-white: #F4F3F0;
+    --light-turquoise: #A2F3F3;
+    --neon-turquoise: #00EDED;
+    --washed-blue: #053057;
+    --cool-gray: #314550;
+    --gray: #1A1A1A;
+    --dark-gray: #0B0D0E;
+    --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--washed-blue);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: var(--washed-blue);
+    color: var(--white);
+    padding: 3.5rem 2.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,237,237,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-logo { width: 120px; margin-bottom: 2rem; display: block; }
+  .hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--neon-turquoise);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--neon-turquoise); }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--off-white);
+    max-width: 620px;
+    line-height: 1.6;
+  }
+  .hero-partnership {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--light-turquoise);
+  }
+  .stat-cell {
+    background: var(--off-white);
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--washed-blue);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--cool-gray);
+    line-height: 1.4;
+  }
+
+  .section {
+    padding: 3rem 2.5rem;
+  }
+  .section-dark {
+    background: var(--washed-blue);
+    color: var(--white);
+  }
+  .section-alt { background: var(--off-white); }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cool-gray);
+    margin-bottom: 0.5rem;
+  }
+  .section-dark .section-label { color: var(--neon-turquoise); }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+  .section-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--cool-gray);
+    max-width: 680px;
+  }
+  .section-dark .section-body { color: var(--off-white); }
+
+  .pressures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .pressure-card {
+    border: 1px solid var(--light-turquoise);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  .pressure-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 6px 0 0 6px;
+  }
+  .pressure-card.expand::before { background: var(--neon-turquoise); }
+  .pressure-card.defend::before { background: var(--washed-blue); }
+  .pressure-card h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--washed-blue);
+    margin-bottom: 0.5rem;
+  }
+  .pressure-card p {
+    font-size: 0.8rem;
+    color: var(--cool-gray);
+    line-height: 1.55;
+  }
+  .pressure-stat {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--washed-blue);
+    padding: 0.35rem 0.6rem;
+    background: rgba(162,243,243,0.2);
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .break-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .break-item {
+    background: var(--cool-gray);
+    border-radius: 6px;
+    padding: 1.25rem;
+  }
+  .break-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0,237,237,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    color: var(--neon-turquoise);
+    font-size: 0.85rem;
+  }
+  .break-item h4 {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--neon-turquoise);
+    margin-bottom: 0.4rem;
+  }
+  .break-item p {
+    font-size: 0.75rem;
+    color: var(--off-white);
+    line-height: 1.5;
+  }
+
+  .change-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+  .change-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .change-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--washed-blue);
+    color: var(--neon-turquoise);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+  .change-row h4 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--washed-blue);
+    margin-bottom: 0.2rem;
+  }
+  .change-row p {
+    font-size: 0.8rem;
+    color: var(--cool-gray);
+    line-height: 1.5;
+  }
+
+  .paths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .path-card {
+    border-radius: 6px;
+    padding: 1.5rem;
+  }
+  .path-card.p1 {
+    background: var(--washed-blue);
+    color: var(--white);
+  }
+  .path-card.p2 {
+    background: var(--white);
+    border: 1px solid var(--light-turquoise);
+    color: var(--washed-blue);
+  }
+  .path-card.p3 {
+    background: var(--cool-gray);
+    color: var(--white);
+  }
+  .path-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .p1 .path-num { color: var(--neon-turquoise); }
+  .p2 .path-num { color: var(--cool-gray); }
+  .p3 .path-num { color: var(--neon-turquoise); }
+  .path-card h3 {
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .path-meta {
+    font-size: 0.7rem;
+    line-height: 1.8;
+    opacity: 0.8;
+  }
+  .path-bestfor {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+  .p2 .path-bestfor { border-color: var(--light-turquoise); }
+  .path-bestfor em {
+    font-style: normal;
+    color: var(--neon-turquoise);
+  }
+  .p2 .path-bestfor em { color: var(--washed-blue); }
+
+  .horizon-flow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .horizon-node {
+    background: var(--cool-gray);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-align: center;
+    flex: 1;
+    min-width: 130px;
+  }
+  .horizon-node.active {
+    background: var(--neon-turquoise);
+    color: var(--washed-blue);
+  }
+  .horizon-arrow {
+    color: var(--neon-turquoise);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .horizon-insight {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(162,243,243,0.12);
+    border-left: 3px solid var(--neon-turquoise);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.8rem;
+    color: var(--off-white);
+    line-height: 1.6;
+  }
+
+  .cta {
+    background: var(--off-white);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .cta h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--washed-blue);
+    margin-bottom: 0.75rem;
+  }
+  .cta p {
+    font-size: 0.85rem;
+    color: var(--cool-gray);
+    margin-bottom: 1.25rem;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--washed-blue);
+    color: var(--neon-turquoise);
+    padding: 0.65rem 2rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .footer {
+    background: var(--washed-blue);
+    color: rgba(255,255,255,0.4);
+    padding: 1.25rem 2.5rem;
+    font-size: 0.65rem;
+  }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 1.75rem; }
+    .stats-bar { grid-template-columns: 1fr; }
+    .pressures { grid-template-columns: 1fr; }
+    .break-grid { grid-template-columns: 1fr; }
+    .paths { grid-template-columns: 1fr; }
+    .section { padding: 2rem 1.5rem; }
+    .hero { padding: 2.5rem 1.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <svg class="hero-logo" viewBox="0 0 572 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 90.2812V25.1138H48.9904C64.5239 25.1138 70.3146 32.0074 70.3146 41.3827C70.3146 48.552 66.2703 53.883 59.2848 56.4566C67.4652 58.3869 74.0831 62.9826 74.0831 72.5417C74.0831 83.2957 67.1895 90.2812 53.1265 90.2812H0ZM12.3165 81.0897H49.2661C56.895 81.0897 61.307 78.1485 61.307 71.163C61.307 63.626 55.4244 61.42 49.2661 61.42H12.3165V81.0897ZM12.3165 53.5154H45.5896C52.2074 53.5154 58.0899 51.2175 58.0899 43.7725C58.0899 37.1546 53.6781 34.3053 45.5896 34.3053H12.3165V53.5154Z" fill="white"/>
+    <path d="M79.532 90.2812V16.7496H91.6647V90.2812H79.532Z" fill="white"/>
+    <path d="M136.308 92.1195C112.778 92.1195 98.4392 81.3655 98.4392 63.1664C98.4392 44.9673 113.054 34.1214 135.665 34.1214C158.459 34.1214 172.338 45.335 172.338 67.5783H111.583C113.421 77.2293 122.245 82.3765 136.676 82.3765C148.533 82.3765 156.529 78.7 158.919 72.4498H171.511C168.202 84.7663 156.161 92.1195 136.308 92.1195ZM111.767 58.1111H159.195C156.989 48.1844 148.9 43.7725 135.756 43.7725C122.521 43.7725 113.973 48.3682 111.767 58.1111Z" fill="white"/>
+    <path d="M178.454 90.2812V35.9597H191.322V47.7248C198.308 38.9929 209.062 34.1214 223.033 34.1214C240.497 34.1214 251.159 41.1988 251.159 62.6149V90.2812H238.291V66.9349C238.291 50.9418 232.041 44.8754 217.242 44.8754C201.893 44.8754 191.322 53.2396 191.322 67.3945V90.2812H178.454Z" fill="white"/>
+    <path d="M320.105 90.2812V78.8838C314.499 87.248 304.02 92.2114 290.969 92.2114C270.747 92.2114 257.696 80.814 257.696 63.2583C257.696 45.7027 270.747 34.2133 290.969 34.2133C304.02 34.2133 314.499 39.1767 320.105 47.6329V16.7496H332.146V90.2812H320.105ZM271.023 63.2583C271.023 74.2881 280.123 81.4574 294.829 81.4574C310.546 81.4574 320.105 74.2881 320.105 63.2583C320.105 52.1367 310.546 44.9673 294.829 44.9673C280.123 44.9673 271.023 52.1367 271.023 63.2583Z" fill="white"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M376.722 38.4242L377.454 70.7401V70.7951C377.454 73.576 378.919 76.7861 382.791 80.2684C386.662 83.7491 392.536 87.1069 400.208 90.0265C415.519 95.8529 436.999 99.5601 460.963 99.5601C484.928 99.5601 506.408 95.8567 521.719 90.0323C529.391 87.1137 535.265 83.7566 539.135 80.2754C543.007 76.7933 544.472 73.5811 544.472 70.7951C544.472 68.009 543.007 64.7968 539.135 61.3147C538.756 60.9739 538.358 60.6342 537.941 60.2961C534.003 62.7129 529.451 64.8784 524.446 66.7824C507.773 73.125 485.068 76.9459 460.231 76.9459C443.554 76.9459 431.367 76.1547 419.478 73.4771C407.648 70.8127 396.353 66.3344 381.4 59.2515C380.589 58.9098 379.133 58.0421 378.581 56.0819C377.991 53.9872 378.979 52.4259 379.221 52.0649C379.568 51.5469 379.935 51.2187 380.073 51.0982C380.252 50.9428 380.407 50.8306 380.499 50.7664C380.797 50.5593 381.071 50.4206 381.139 50.3859L381.145 50.3826C381.354 50.2763 381.579 50.1759 381.755 50.0995C382.14 49.9318 382.672 49.7138 383.317 49.4595C384.62 48.9457 386.509 48.2335 388.871 47.3912C393.597 45.7056 400.277 43.4781 408.031 41.2554C423.443 36.838 443.498 32.3218 460.963 32.3218C485.8 32.3218 508.505 36.1427 525.178 42.4853C529.828 44.2539 534.086 46.2481 537.824 48.4598C538.022 48.2912 538.215 48.1223 538.403 47.953C542.274 44.4709 543.74 41.2588 543.74 38.4727C543.74 35.6866 542.274 32.4744 538.403 28.9923C534.532 25.5112 528.659 22.154 520.986 19.2354C505.675 13.411 484.196 9.70764 460.231 9.70764C436.266 9.70764 414.786 13.411 399.475 19.2354C391.803 22.154 385.929 25.5112 382.059 28.9923C378.21 32.4543 376.739 35.6494 376.722 38.4242ZM545.849 54.29C550.405 49.8898 553.46 44.5614 553.46 38.4727C553.46 31.9735 549.98 26.3406 544.907 21.7781C539.833 17.2147 532.765 13.3277 524.446 10.1629C507.773 3.82034 485.068 -0.000579834 460.231 -0.000579834C435.394 -0.000579834 412.689 3.82034 396.016 10.1629C387.696 13.3277 380.628 17.2147 375.555 21.7781C370.482 26.3406 367.002 31.9735 367.002 38.4727V38.5276L367.734 70.8542C367.756 77.3256 371.231 82.9361 376.287 87.4831C381.361 92.0455 388.428 95.9328 396.748 99.0986C413.421 105.443 436.126 109.268 460.963 109.268C485.8 109.268 508.505 105.447 525.178 99.1048C533.498 95.94 540.566 92.053 545.639 87.4896C550.712 82.9271 554.192 77.2943 554.192 70.7951C554.192 64.3856 550.807 58.8186 545.849 54.29ZM528.462 54.4532C526.399 53.4507 524.149 52.4823 521.719 51.5578C506.408 45.7334 484.928 42.03 460.963 42.03C444.88 42.03 425.871 46.2419 410.712 50.5869C405.078 52.202 400.03 53.8193 395.935 55.2125C405.59 59.4146 413.531 62.1857 421.616 64.0067C432.468 66.4508 443.821 67.2377 460.231 67.2377C484.196 67.2377 505.675 63.5343 520.986 57.71C523.707 56.6749 526.202 55.5846 528.462 54.4532Z" fill="white"/>
+    <path d="M552.196 12.7752V1.42888H547.944V-0.000579834H558.057V1.42888H553.805V12.7752H552.196Z" fill="white"/>
+    <path d="M558.983 12.7752V-0.000579834H561.181L565.184 10.6132H565.219L569.222 -0.000579834H571.42V12.7752H569.811V2.26869H569.776L565.916 12.7752H564.487L560.627 2.26869H560.591V12.7752H558.983Z" fill="white"/>
+  </svg>
+  <div class="hero-label">Point of View &mdash; Visual Summary</div>
+  <h1>The <span>Decisive</span> Advantage</h1>
+  <p class="hero-sub">Why real-time decisioning &mdash; not better data &mdash; is the foundation of the next era of customer experience. The intelligence exists. The architecture to act on it does not.</p>
+  <div class="hero-partnership">In partnership with Snowflake &middot; March 2026</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-num">55%</div>
+    <div class="stat-label">of firms say their platform fails flexibility requirements</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">~0%</div>
+    <div class="stat-label">of Fortune 500 CMOs can quantify CDP ROI</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">$570B</div>
+    <div class="stat-label">incremental growth for personalization leaders by 2030</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">01 &mdash; The Core Problem</div>
+  <div class="section-title">The Activation Gap</div>
+  <p class="section-body">Enterprises have spent years and billions building customer intelligence infrastructure. That work is largely done. Yet most cannot determine what to say to a customer in the next 200 milliseconds at the point of decision. This is not a data problem. It is a decisioning problem.</p>
+</div>
+
+<div class="section section-alt">
+  <div class="section-label">02 &mdash; The Business Drivers</div>
+  <div class="section-title">Two Pressures. One Requirement.</div>
+  <div class="pressures">
+    <div class="pressure-card expand">
+      <h3>Expansion Pressure</h3>
+      <p>Grow revenue, acquire customers precisely, increase share of wallet. Individual-level decisions &mdash; not segments &mdash; drive 10&ndash;30% improvements in marketing ROI.</p>
+      <div class="pressure-stat">10&ndash;30% marketing ROI lift at the individual level</div>
+    </div>
+    <div class="pressure-card defend">
+      <h3>Defensive Pressure</h3>
+      <p>Reduce cost, protect margin. At $11&ndash;12 per inbound contact, every call deflected to proactive digital resolution is direct savings. The decisioning loop must be genuinely proactive &mdash; not merely fast-reactive.</p>
+      <div class="pressure-stat">$11&ndash;12 per inbound service contact</div>
+    </div>
+  </div>
+</div>
+
+<div class="section section-dark">
+  <div class="section-label">03 &mdash; What's Broken</div>
+  <div class="section-title" style="color: var(--white);">The Architecture That Broke</div>
+  <p class="section-body" style="margin-bottom: 1.5rem;">Legacy platforms maintain their own copy of customer data, separate from where intelligence lives. This pattern has become a liability.</p>
+  <div class="break-grid">
+    <div class="break-item">
+      <div class="break-icon">&#9201;</div>
+      <h4>Data Latency</h4>
+      <p>Syncing every 4 hours cannot power real-time decisions. A customer who calls 3 hours after abandoning checkout needs a decision based on what just happened.</p>
+    </div>
+    <div class="break-item">
+      <div class="break-icon">&#9889;</div>
+      <h4>Integration Fragility</h4>
+      <p>Every sync contract breaks. Schema changes, pipeline failures, identity mismatches &mdash; failures surface as wrong decisions at scale.</p>
+    </div>
+    <div class="break-item">
+      <div class="break-icon">&#9881;</div>
+      <h4>No AI Arbitration Path</h4>
+      <p>Legacy rules engines cannot handle multiple models producing continuous scores &mdash; propensity, churn risk, LTV &mdash; evaluated simultaneously with contextual relevance.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">04 &mdash; The Inflection Point</div>
+  <div class="section-title">What Changed</div>
+  <p class="section-body" style="margin-bottom: 1rem;">Two years ago, this required a complex external stack. That world has compressed materially.</p>
+  <div class="change-list">
+    <div class="change-row">
+      <div class="change-num">1</div>
+      <div>
+        <h4>Cloud-Native ML Infrastructure</h4>
+        <p>Platforms like Snowflake now offer native Feature Stores, Model Registries, and real-time REST APIs &mdash; no data movement required.</p>
+      </div>
+    </div>
+    <div class="change-row">
+      <div class="change-num">2</div>
+      <div>
+        <h4>AI-Accelerated Engineering</h4>
+        <p>The bottleneck has shifted from engineering to product: what should we build and what does good look like?</p>
+      </div>
+    </div>
+    <div class="change-row">
+      <div class="change-num">3</div>
+      <div>
+        <h4>Semantic Signal Processing</h4>
+        <p>Native embeddings turn generic "content viewed" events into actionable decisioning intelligence.</p>
+      </div>
+    </div>
+    <div class="change-row">
+      <div class="change-num">4</div>
+      <div>
+        <h4>Composable Activation Tools</h4>
+        <p>Best-of-breed tools read directly from your data platform, run logic in place, and write results back.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section section-alt">
+  <div class="section-label">05 &mdash; The Decision Framework</div>
+  <div class="section-title">Three Paths Forward</div>
+  <div class="paths">
+    <div class="path-card p1">
+      <div class="path-num">Path 1</div>
+      <h3>Custom Build on Your Data Platform</h3>
+      <div class="path-meta">
+        Year 1: $1M&ndash;$15M+<br>
+        Time to Value: 6&ndash;18 months<br>
+        Talent: ML engineers, MLOps, data architects<br>
+        Freedom: Maximum
+      </div>
+      <div class="path-bestfor"><em>Best for:</em> Differentiated decisioning, proprietary signals, high data maturity</div>
+    </div>
+    <div class="path-card p2">
+      <div class="path-num">Path 2</div>
+      <h3>Composable Activation</h3>
+      <div class="path-meta">
+        Year 1: $300K&ndash;$2M<br>
+        Time to Value: 2&ndash;6 months<br>
+        Talent: Marketing ops, analytics<br>
+        Freedom: Moderate (rising)
+      </div>
+      <div class="path-bestfor"><em>Best for:</em> Most enterprises &mdash; speed to production, lower talent barrier</div>
+    </div>
+    <div class="path-card p3">
+      <div class="path-num">Path 3</div>
+      <h3>Pega Customer Decision Hub</h3>
+      <div class="path-meta">
+        Year 1: $2M&ndash;$3M+<br>
+        Time to Value: 4&ndash;8 months<br>
+        Talent: Pega engineers, strategists<br>
+        Freedom: Moderate
+      </div>
+      <div class="path-bestfor"><em>Best for:</em> 5+ channels, high volume, complex constraints, enterprise scale</div>
+    </div>
+  </div>
+</div>
+
+<div class="section section-dark">
+  <div class="section-label">06 &mdash; Where This Is Going</div>
+  <div class="section-title" style="color: var(--white);">The Agentic Horizon</div>
+  <p class="section-body" style="margin-bottom: 1rem;">The next frontier is personal conversational AI &mdash; agents with persistent memory, contextual awareness, and real-time intelligence. From Business Process Operations to Agentic Process Operations.</p>
+  <div class="horizon-flow">
+    <div class="horizon-node">Rules-Based Chatbots</div>
+    <div class="horizon-arrow">&rarr;</div>
+    <div class="horizon-node">Personalized Offers</div>
+    <div class="horizon-arrow">&rarr;</div>
+    <div class="horizon-node">Real-Time Decisioning</div>
+    <div class="horizon-arrow">&rarr;</div>
+    <div class="horizon-node active">Conversational AI Agents</div>
+  </div>
+  <div class="horizon-insight">
+    Conversational AI requires the same decisioning infrastructure as personalization &mdash; at higher resolution and lower latency. Enterprises that defer investment are foreclosing on capabilities that will define the competitive landscape within 3&ndash;5 years.
+  </div>
+</div>
+
+<div class="cta">
+  <h2>Start with a Decisioning Maturity Assessment</h2>
+  <p>An honest evaluation of your data foundation, current architecture, and the business pressure driving your need for change.</p>
+  <span class="cta-btn">rob.fuller@blend360.com &middot; ryan.serpan@blend360.com</span>
+</div>
+
+<div class="footer">
+  <span>&copy; 2026 Blend360. All rights reserved. &middot; blend360.com &middot; In partnership with Snowflake</span>
+</div>
+
+</body>
+</html>
